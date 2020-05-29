@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/chrome-url-storage",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -20,7 +21,8 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.json"
             ],
             "styles": [
               "src/styles.css"

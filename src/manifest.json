@@ -1,0 +1,10 @@
+{
+    "name": "Bookmark Manager",
+    "version": "1.0",
+    "description": "Manages the bookmarks",
+    "manifest_version": 2,
+    "browser_action": {
+        "default_popup": "index.html",
+        "default_icon": "favicon.ico"
+    }
+}
