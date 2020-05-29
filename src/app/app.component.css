@@ -1,3 +1,6 @@
 .text-overflow-wrap {
     overflow-wrap: break-word !important;
 }
+.margin-bottom-none {
+    margin-bottom: 0px;
+}
