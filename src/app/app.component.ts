@@ -39,8 +39,8 @@ export class AppComponent implements OnInit {
           this.links.push((data.payload.val()).toString())
         }
       }
+      console.log('Links', this.links)
       this.isLoading = false;
-      console.log(response)
     })
   }
 
@@ -48,13 +48,17 @@ export class AppComponent implements OnInit {
     let isExistingLink: boolean = this.links.find(i => i === this.link) ? true : false;
     if (isExistingLink) {
       console.log(this.alerts)
-      this.showAlert('error', 'Link already exists.');
+      this.showAlert('error', 'Bookmark already exists.');
     }
     else {
       this.firebaseLinks.push(this.link);
-      this.showAlert('success', `Saved Link!`);
+      this.showAlert('success', `Saved bookmark!`);
       this.link = '';
     }
+  }
+
+  openLink(link: string) {
+    window.open(link);
   }
 
   showAlert(type: string, message: string) {
