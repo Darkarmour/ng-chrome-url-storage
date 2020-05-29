@@ -46,9 +46,13 @@ export class AppComponent implements OnInit {
 
   saveLink() {
     let isExistingLink: boolean = this.links.find(i => i === this.link) ? true : false;
+    var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+    let urlRegex = new RegExp(expression);
     if (isExistingLink) {
-      console.log(this.alerts)
       this.showAlert('error', 'Bookmark already exists.');
+    }
+    else if (!this.link.match(urlRegex)) {
+      this.showAlert('error', 'Bookmark is not a valid link.');
     }
     else {
       this.firebaseLinks.push(this.link);

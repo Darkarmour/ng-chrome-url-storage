@@ -1,37 +1,42 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="m-3">
-        <div class="input-group m-3">
-          <input type="text" [(ngModel)]="link" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-        </div>
-        <div *ngIf="alerts['success']" class="alert alert-success m-3" role="alert">
+  <div *ngIf="!isLoading" class="row">
+    <div class="col-12 col-md-10 m-2">
+      <div class="input-group">
+        <input type="text" [(ngModel)]="link" class="form-control" placeholder="Bookmark link" id="basic-url"
+          aria-describedby="basic-addon3">
+      </div>
+    </div>
+    <div class="col-12 col-md-2 m-2">
+      <div *ngIf="!alerts['success'] && !alerts['error']">
+        <button type="button" class="btn btn-outline-primary" (click)="saveLink()">Save</button>
+      </div>
+      <div *ngIf="alerts['success'] || alerts['error']">
+        <div *ngIf="alerts['success']" class="alert alert-success" role="alert">
           {{alertMessage['success']}}
         </div>
-        <div *ngIf="alerts['error']" class="alert alert-warning m-3" role="alert">
+        <div *ngIf="alerts['error']" class="alert alert-warning" role="alert">
           {{alertMessage['error']}}
         </div>
       </div>
     </div>
-    <div class="col-md-2">
-      <button type="button" class="btn btn-outline-primary m-3" (click)="saveLink()">Save</button>
-    </div>
-    <div class="col-md-6">
-      <div *ngIf="!isLoading" class="m-3">
-        <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
-          <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active">
-              Saved Bookmarks
-            </a>
-            <a *ngFor="let link of links" (click)="openLink(link)" class="list-group-item list-group-item-action">{{link}}</a>
-          </div>
+  </div>
+  <div *ngIf="!isLoading" class="row">
+    <div class="col-12 m-2">
+      <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action active">
+            Saved Bookmarks
+          </a>
+          <a *ngFor="let link of links" (click)="openLink(link)"
+            class="list-group-item list-group-item-action text-overflow-wrap">{{link}}</a>
         </div>
       </div>
-      <div *ngIf="isLoading" class="m-3">
-        <div class="d-flex align-items-center">
-          <strong>Loading...</strong>
-          <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
-        </div>
+    </div>
+  </div>
+  <div *ngIf="isLoading" class="row m-3">
+    <div class="col-12">
+      <div class="d-flex align-items-center">
+        <p>Loading...</p>
       </div>
     </div>
   </div>
